@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container mt-5">
+    <form>
+        <!-- Email input -->
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+        </div>
+
+        <!-- Password input -->
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+        </div>
+
+        <!-- 2 column grid layout for inline styling -->
+        <div class="row mb-3">
+            <div class="col d-flex align-items-center">
+                <!-- Checkbox -->
+                <input class="form-check-input me-2" type="checkbox" id="rememberMe" checked>
+                <label class="form-check-label" for="rememberMe"> Remember me </label>
+            </div>
+            <div class="col text-end">
+                <!-- Simple link -->
+                <a href="#">Forgot password?</a>
+            </div>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary w-100">Sign in</button>
+
+        <!-- Register buttons -->
+        <div class="text-center mt-3">
+            <p>Not a member? <a href="#">Register</a></p>
+            <p>or sign up with:</p>
+            <button type="button" class="btn btn-outline-primary btn-floating mx-1">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button type="button" class="btn btn-outline-danger btn-floating mx-1">
+                <i class="fab fa-google"></i>
+            </button>
+            <button type="button" class="btn btn-outline-info btn-floating mx-1">
+                <i class="fab fa-twitter"></i>
+            </button>
+            <button type="button" class="btn btn-outline-dark btn-floating mx-1">
+                <i class="fab fa-github"></i>
+            </button>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

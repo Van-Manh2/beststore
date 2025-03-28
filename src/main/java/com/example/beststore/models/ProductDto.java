@@ -57,12 +57,12 @@ public class ProductDto {
         this.description = description;
     }
 
-    public MultipartFile getImgeFile() {
+    public MultipartFile getImageFile() {
         return imageFile;
     }
 
-    public void setImgeFile(MultipartFile imgeFile) {
-        this.imageFile = imgeFile;
+    public void setImageFile(MultipartFile imageFile) {
+        this.imageFile = imageFile;
     }
 
     @Min(0)
@@ -71,6 +71,6 @@ public class ProductDto {
     @Size(min = 10, message = "mô tả tác giải")
     @Size(max = 2000, message = "không mô tả tác giải")
     private String description;
-    public MultipartFile imageFile;
+    private MultipartFile imageFile;
 
 }

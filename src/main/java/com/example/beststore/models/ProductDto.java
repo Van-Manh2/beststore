@@ -1,76 +1,86 @@
 package com.example.beststore.models;
 
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-import org.springframework.web.multipart.MultipartFile;
-
-
 
 public class ProductDto {
-    @NotEmpty(message = "The name is required ")
+    @NotEmpty(message = "The name is required")
     private String name;
 
-    @NotEmpty(message = "The name is required")
+    @NotEmpty(message = "The brand is required")
     private String brand;
 
-    @NotEmpty(message = "The name is required")
+    @NotEmpty(message = "The category is required")
     private String category;
 
-    public @NotEmpty(message = "The name is required ") String getName() {
-        return name;
+    @Min(value = 0, message = "The price must be at least 0")
+    private double price;
+
+    @Size(min = 10, max = 2000, message = "Description must be between 10 and 2000 characters")
+    private String description;
+
+    // Constructors
+    public ProductDto() {
     }
 
-    public void setName(@NotEmpty(message = "The name is required ") String name) {
+    public ProductDto(String name, String brand, String category, double price, String description) {
         this.name = name;
-    }
-
-    public @NotEmpty(message = "The name is required") String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(@NotEmpty(message = "The name is required") String brand) {
         this.brand = brand;
-    }
-
-    public @NotEmpty(message = "The name is required") String getCategory() {
-        return category;
-    }
-
-    public void setCategory(@NotEmpty(message = "The name is required") String category) {
         this.category = category;
-    }
-
-    public @Min(0) double getPrice() {
-        return price;
-    }
-
-    public void setPrice(@Min(0) double price) {
         this.price = price;
-    }
-
-    public @Size(min = 10, message = "mô tả tác giải") @Size(max = 2000, message = "không mô tả tác giải") String getDescription() {
-        return description;
-    }
-
-    public void setDescription(@Size(min = 10, message = "mô tả tác giải") @Size(max = 2000, message = "không mô tả tác giải") String description) {
         this.description = description;
     }
 
-    public MultipartFile getImageFile() {
-        return imageFile;
+    // Getters and Setters
+    public String getName() {
+        return name;
     }
 
-    public void setImageFile(MultipartFile imageFile) {
-        this.imageFile = imageFile;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @Min(0)
-    private double price;
+    public String getBrand() {
+        return brand;
+    }
 
-    @Size(min = 10, message = "mô tả tác giải")
-    @Size(max = 2000, message = "không mô tả tác giải")
-    private String description;
-    private MultipartFile imageFile;
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductDto{" +
+                "name='" + name + '\'' +
+                ", brand='" + brand + '\'' +
+                ", category='" + category + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

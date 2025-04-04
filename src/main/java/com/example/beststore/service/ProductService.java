@@ -6,6 +6,7 @@ import com.example.beststore.repository.ProductRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,7 +32,7 @@ public class ProductService {
             product.setCategory(dto.getCategory());
             product.setPrice(dto.getPrice());
             product.setDescription(dto.getDescription());
-            product.setImageFileName(dto.getImageFile().getOriginalFilename());
+
             return product;
         }).collect(Collectors.toList());
 

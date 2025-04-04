@@ -1,12 +1,10 @@
 package com.example.beststore.models;
 
 import jakarta.persistence.*;
-
 import java.util.Date;
 
 @Entity
-@Table(name="products")
-
+@Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +17,6 @@ public class Product {
     @Column(columnDefinition = "TEXT")
     private String description;
     private Date createdAT;
-    private String imageFileName;
 
     public int getId() {
         return id;
@@ -69,19 +66,11 @@ public class Product {
         this.description = description;
     }
 
-    public Date getCreatedAT() {
+    public Date getCreatedAt() {
         return createdAT;
     }
 
-    public void setCreatedAT(Date createdAT) {
-        this.createdAT = createdAT;
-    }
-
-    public String getImageFileName() {
-        return imageFileName;
-    }
-
-    public void setImageFileName(String imageFileName) {
-        this.imageFileName = imageFileName;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAT = createdAt;
     }
 }

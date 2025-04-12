@@ -36,6 +36,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        System.out.println("Login request: " + loginRequest);
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginRequest.getEmail(),
@@ -106,6 +107,40 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable int id, @RequestBody RegisterRequest updateRequest) {
+        // Lấy người dùng từ cơ sở dữ liệu
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // Cập nhật tên người dùng
+        user.setName(updateRequest.getName());
+
+        // Kiểm tra xem role có null không
+        if (updateRequest.getRole() != null) {
+            user.setRole(updateRequest.getRole());  // Chỉ set role khi nó không null
+        } else {
+            return ResponseEntity.badRequest().body("Role cannot be null");
+        }
+
+        // Lưu người dùng đã cập nhật lại vào cơ sở dữ liệu
+        userRepository.save(user);
+
+        return ResponseEntity.ok("User updated successfully");
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable int id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        userRepository.delete(user);
+
+        return ResponseEntity.ok("User deleted successfully");
+    }
+
+
+
     @PostMapping("/logout")
     public ResponseEntity<?> logout(@RequestBody RefreshTokenRequest refreshTokenRequest) {
         String refreshToken = refreshTokenRequest.getRefreshToken();
@@ -117,4 +152,18 @@ public class AuthController {
 
         return ResponseEntity.ok("Logged out successfully");
     }
+
+    // Trong AuthController hoặc UserController
+    @GetMapping("/users")
+    public ResponseEntity<?> getAllUsers() {
+        return ResponseEntity.ok(userRepository.findAll());
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<?> getUserById(@PathVariable int id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return ResponseEntity.ok(user);
+    }
+
 }

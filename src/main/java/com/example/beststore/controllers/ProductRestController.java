@@ -41,18 +41,21 @@ public class ProductRestController {
 
     // Tạo sản phẩm mới
     @PostMapping
-    public ResponseEntity<?> createProduct(@Valid @RequestBody ProductDto productDto) {
-        Product product = new Product();
-        product.setName(productDto.getName());
-        product.setBrand(productDto.getBrand());
-        product.setCategory(productDto.getCategory());
-        product.setPrice(productDto.getPrice());
-        product.setDescription(productDto.getDescription());
-        product.setCreatedAt(new Date());
+    public ResponseEntity<?> createProducts(@Valid @RequestBody List<ProductDto> productDtos) {
+        for (ProductDto productDto : productDtos) {
+            Product product = new Product();
+            product.setName(productDto.getName());
+            product.setBrand(productDto.getBrand());
+            product.setCategory(productDto.getCategory());
+            product.setPrice(productDto.getPrice());
+            product.setDescription(productDto.getDescription());
+            product.setCreatedAt(new Date());
 
-        productRepository.save(product);
-        return ResponseEntity.ok("Product created successfully!");
+            productRepository.save(product);
+        }
+        return ResponseEntity.ok("Products created successfully!");
     }
+
 
     // Cập nhật sản phẩm
     @PutMapping("/{id}")
